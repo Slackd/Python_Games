@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
-# Snake Game with Turtle Module V 0.2
-# Changelog V 0.1 to V 0.2
-# Made it Executable with Hashbang
+# Snake Game with Turtle Module V 0.3
+# Changelog V 0.1 to V 0.3
+# Made it Executable with Hashbang, V 0.2
+# Made Score into Function
+# Made Minor Optimzations to the Code to shorten it. V 0.3
+
 
 # Imports
 import turtle
@@ -138,9 +141,7 @@ while True:
     # Check for collision with the food
     if head.distance(food) < 20:
         # Move the food to a random location
-        x = random.randint(-290, 290)
-        y = random.randint(-290, 290)
-        food.goto(x, y)
+        food.goto(x=random.randint(-290, 290), y=random.randint(-290, 290))
 
         # Add a segment
         new_segment = turtle.Turtle()
@@ -165,15 +166,12 @@ while True:
     # Segments in index -1 but 0
 
     for index in range(len(segments)-1, 0, -1):
-        x = segments[index-1].xcor()
-        y = segments[index-1].ycor()
-        segments[index].goto(x, y)
+        segments[index].goto(segments[index-1].xcor(),
+                             segments[index-1].ycor())
 
     # For the 0th head to goto the first pos
     if len(segments) > 0:
-        x = head.xcor()
-        y = head.ycor()
-        segments[0].goto(x, y)
+        segments[0].goto(x=head.xcor(), y=head.ycor())
 
     # Init Move
     move()
