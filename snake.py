@@ -98,6 +98,12 @@ def move():
         head.setx(x - 20)
 
 
+def pen_score():
+    pen.clear()
+    pen.write("Score: {} High Score {}".format(score, high_score), align="center",
+              font=("Menlo", 24, "normal"))
+
+
 # Keyboard bindings for arrow keys, alter can be awsd.
 wn.listen()
 wn.onkeypress(go_up, "Up")
@@ -127,9 +133,7 @@ while True:
         # Reset the delay
         delay = 0.1
 
-        pen.clear()
-        pen.write("Score: {} High Score {}".format(score, high_score), align="center",
-                  font=("Menlo", 24, "normal"))
+        pen_score()
 
     # Check for collision with the food
     if head.distance(food) < 20:
@@ -155,9 +159,7 @@ while True:
         if score > high_score:
             high_score = score
 
-        pen.clear()
-        pen.write("Score: {} High Score {}".format(score, high_score), align="center",
-                  font=("Menlo", 24, "normal"))
+        pen_score()
 
     # Move the end segments first in reverse order
     # Segments in index -1 but 0
@@ -195,9 +197,7 @@ while True:
             # Reset the delay
             delay = 0.1
 
-            pen.clear()
-            pen.write("Score: {} High Score {}".format(score, high_score), align="center",
-                      font=("Menlo", 24, "normal"))
+            pen_score()
 
     # Slow it down
     time.sleep(delay)
