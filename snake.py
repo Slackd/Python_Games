@@ -1,25 +1,29 @@
-# practice the turle module to make the snake game
+# Snake Game with Turtle Module V 0.2
+# Changelog V 0.1 to V 0.2
+# Made it Executable with Hashbang
+
+#!/usr/bin/env python3
 
 # Imports
 import turtle
 import time
 import random
 
-# setup the screen
+# Eetup the screen
 wn = turtle.Screen()
 wn.title("Coded by Sam")
 wn.bgcolor("blue")
 wn.setup(width=600, height=600)
 wn.tracer(0)
 
-# Add Delay
+# Added Global Game Delay
 delay = 0.1
 
-# Scores
+# Scores Setup on Game Init
 score = 0
 high_score = 0
 
-# make the snake head
+# Make the snake head
 head = turtle.Turtle()
 head.speed(0)
 head.shape("square")
@@ -28,11 +32,11 @@ head.penup()
 head.goto(0, 0)
 head.direction = "stop"
 
-# snake segments
-# starts with an empty array as a null list
+# Snake segments on Init
+# Starts with an empty array as a null list
 segments = []
 
-# scoring pen
+# Scoring pen on Game Init. Global set to 0 Score.
 pen = turtle.Turtle()
 pen.speed(0)
 pen.shape("square")
@@ -44,7 +48,7 @@ pen.write("Score: 0  High Score: 0", align="center",
           font=("Menlo", 24, "normal"))
 
 
-# snake food
+# Snake food
 food = turtle.Turtle()
 food.speed(0)
 food.shape("circle")
@@ -52,7 +56,7 @@ food.color("red")
 food.penup()
 food.goto(0, 100)
 
-# Functions
+# Functions Global
 
 # Directional Functions - Check for directional ifs.
 
@@ -94,7 +98,7 @@ def move():
         head.setx(x - 20)
 
 
-# keyboard bindings
+# Keyboard bindings for arrow keys, alter can be awsd.
 wn.listen()
 wn.onkeypress(go_up, "Up")
 wn.onkeypress(go_down, "Down")
@@ -105,36 +109,36 @@ wn.onkeypress(go_left, "Left")
 while True:
     wn.update()
 
-    # check for collision with the border
+    # Check for collision with the border
     if head.xcor() > 290 or head.xcor() < -290 or head.ycor() > 290 or head.ycor() < -290:
         time.sleep(1)
         head.goto(0, 0)
         head.direction = "stop"
 
-        # hide the segments
+        # Hide the segments
         for segment in segments:
             segment.goto(1000, 1000)
 
-        # clear the segments list
+        # Clear the segments list
         segments.clear()
 
         # Reset Score to 0 as it colided
         score = 0
-        # reset the delay
+        # Reset the delay
         delay = 0.1
 
         pen.clear()
         pen.write("Score: {} High Score {}".format(score, high_score), align="center",
                   font=("Menlo", 24, "normal"))
 
-    # check for collision with the food
+    # Check for collision with the food
     if head.distance(food) < 20:
-        # move the food to a random location
+        # Move the food to a random location
         x = random.randint(-290, 290)
         y = random.randint(-290, 290)
         food.goto(x, y)
 
-        # add a segment
+        # Add a segment
         new_segment = turtle.Turtle()
         new_segment.speed(0)
         new_segment.shape("square")
@@ -142,10 +146,10 @@ while True:
         new_segment.penup()
         segments.append(new_segment)
 
-        # shorten the delay
+        # Shorten the delay, Modify to increase difficulty * difficulty setting *
         delay -= 0.001
 
-        # increase the score
+        # Increase the score
         score += 10
 
         if score > high_score:
@@ -155,15 +159,15 @@ while True:
         pen.write("Score: {} High Score {}".format(score, high_score), align="center",
                   font=("Menlo", 24, "normal"))
 
-    # move the end segments first in reverse order
-    # segments in index -1 but 0
+    # Move the end segments first in reverse order
+    # Segments in index -1 but 0
 
     for index in range(len(segments)-1, 0, -1):
         x = segments[index-1].xcor()
         y = segments[index-1].ycor()
         segments[index].goto(x, y)
 
-    # for the 0th head to goto the first pos
+    # For the 0th head to goto the first pos
     if len(segments) > 0:
         x = head.xcor()
         y = head.ycor()
@@ -179,16 +183,16 @@ while True:
             head.goto(0, 0)
             head.direction = "stop"
 
-            # hide the segments
+            # Hide the segments
             for segment in segments:
                 segment.goto(1000, 1000)
 
-            # clear the segments list
+            # Clear the segments list
             segments.clear()
 
             # Reset Score to 0 as it colided
             score = 0
-            # reset the delay
+            # Reset the delay
             delay = 0.1
 
             pen.clear()
