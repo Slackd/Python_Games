@@ -38,21 +38,27 @@ food.goto(0, 100)
 
 # Functions
 
+# Directional Functions - Check for directional ifs.
+
 
 def go_up():
-    head.direction = "up"
+    if head.direction != "down":
+        head.direction = "up"
 
 
 def go_down():
-    head.direction = "down"
+    if head.direction != "up":
+        head.direction = "down"
 
 
 def go_right():
-    head.direction = "right"
+    if head.direction != "left":
+        head.direction = "right"
 
 
 def go_left():
-    head.direction = "left"
+    if head.direction != "right":
+        head.direction = "left"
 
 # Move functions
 
@@ -127,6 +133,21 @@ while True:
 
     # Init Move
     move()
+
+    # Check for body collision
+    for segment in segments:
+        if segment.distance(head) < 20:
+            time.sleep(1)
+            head.goto(0, 0)
+            head.direction = "stop"
+
+            # hide the segments
+            for segment in segments:
+                segment.goto(1000, 1000)
+
+            # clear the segments list
+            segments.clear()
+
     # Slow it down
     time.sleep(delay)
 
