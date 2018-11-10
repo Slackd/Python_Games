@@ -1,8 +1,8 @@
+#!/usr/bin/env python3
+
 # Snake Game with Turtle Module V 0.2
 # Changelog V 0.1 to V 0.2
 # Made it Executable with Hashbang
-
-#!/usr/bin/env python3
 
 # Imports
 import turtle
