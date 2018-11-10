@@ -147,7 +147,7 @@ while True:
         segments.append(new_segment)
 
         # Shorten the delay, Modify to increase difficulty * difficulty setting *
-        delay -= 0.001
+        delay -= 0.01
 
         # Increase the score
         score += 10
