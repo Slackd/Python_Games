@@ -97,6 +97,20 @@ while True:
         new_segment.penup()
         segments.append(new_segment)
 
+    # move the end segments first in reverse order
+    # segments in index -1 but 0
+
+    for index in range(len(segments)-1, 0, -1):
+        x = segments[index-1].xcor()
+        y = segments[index-1].ycor()
+        segments[index].goto(x, y)
+
+    # for the 0th head to goto the first pos
+    if len(segments) > 0:
+        x = head.xcor()
+        y = head.ycor()
+        segments[0].goto(x, y)
+
     # Init Move
     move()
     # Slow it down
