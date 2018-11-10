@@ -15,6 +15,10 @@ wn.tracer(0)
 # Add Delay
 delay = 0.1
 
+# Scores
+score = 0
+high_score = 0
+
 # make the snake head
 head = turtle.Turtle()
 head.speed(0)
@@ -27,6 +31,18 @@ head.direction = "stop"
 # snake segments
 # starts with an empty array as a null list
 segments = []
+
+# scoring pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.shape("square")
+pen.color("grey")
+pen.penup()
+pen.ht()
+pen.goto(0, 260)
+pen.write("Score: 0  High Score: 0", align="center",
+          font=("Menlo", 24, "normal"))
+
 
 # snake food
 food = turtle.Turtle()
@@ -102,6 +118,15 @@ while True:
         # clear the segments list
         segments.clear()
 
+        # Reset Score to 0 as it colided
+        score = 0
+        # reset the delay
+        delay = 0.1
+
+        pen.clear()
+        pen.write("Score: {} High Score {}".format(score, high_score), align="center",
+                  font=("Menlo", 24, "normal"))
+
     # check for collision with the food
     if head.distance(food) < 20:
         # move the food to a random location
@@ -116,6 +141,19 @@ while True:
         new_segment.color("pink")
         new_segment.penup()
         segments.append(new_segment)
+
+        # shorten the delay
+        delay -= 0.001
+
+        # increase the score
+        score += 10
+
+        if score > high_score:
+            high_score = score
+
+        pen.clear()
+        pen.write("Score: {} High Score {}".format(score, high_score), align="center",
+                  font=("Menlo", 24, "normal"))
 
     # move the end segments first in reverse order
     # segments in index -1 but 0
@@ -147,6 +185,15 @@ while True:
 
             # clear the segments list
             segments.clear()
+
+            # Reset Score to 0 as it colided
+            score = 0
+            # reset the delay
+            delay = 0.1
+
+            pen.clear()
+            pen.write("Score: {} High Score {}".format(score, high_score), align="center",
+                      font=("Menlo", 24, "normal"))
 
     # Slow it down
     time.sleep(delay)
