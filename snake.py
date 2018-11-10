@@ -12,7 +12,7 @@ import turtle
 import time
 import random
 
-# Eetup the screen
+# Setup the screen
 wn = turtle.Screen()
 wn.title("Coded by Sam")
 wn.bgcolor("blue")
