@@ -89,3 +89,21 @@ while True:
     # Move the ball
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
+
+    # Border Check (Top, Bottom, Right & Left)
+
+    # Top & Bottom Logic
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1
+    elif ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1
+
+    # Left & Right Logic
+    if ball.xcor() > 350:
+        ball.goto(0, 0)
+        ball.dx *= -1
+    elif ball.xcor() < -350:
+        ball.goto(0, 0)
+        ball.dx *= -1
