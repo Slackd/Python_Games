@@ -20,7 +20,7 @@ wn.tracer(0)
 # Paddle A
 paddle_a = turtle.Turtle()
 paddle_a.speed(0)
-paddle_a.color("gray")
+paddle_a.color("white")
 paddle_a.shape("square")
 paddle_a.shapesize(stretch_wid=5, stretch_len=1)
 paddle_a.penup()
@@ -29,7 +29,7 @@ paddle_a.goto(-350, 0)
 # Paddle B
 paddle_b = turtle.Turtle()
 paddle_b.speed(0)
-paddle_b.color("gray")
+paddle_b.color("white")
 paddle_b.shape("square")
 paddle_b.shapesize(stretch_wid=5, stretch_len=1)
 paddle_b.penup()
@@ -106,4 +106,11 @@ while True:
         ball.dx *= -1
     elif ball.xcor() < -350:
         ball.goto(0, 0)
+        ball.dx *= -1
+
+    # Paddle and Ball Collisions
+    if ball.xcor() < -340 and ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50:
+        ball.dx *= -1
+
+    if ball.xcor() > 340 and ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() - 50:
         ball.dx *= -1
