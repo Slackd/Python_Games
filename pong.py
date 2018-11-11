@@ -108,7 +108,7 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
-    # Paddle and Ball Collisions
+    # Paddle and Ball Collisions, Logic
     if ball.xcor() < -340 and ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50:
         ball.dx *= -1
 
