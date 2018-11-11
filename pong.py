@@ -15,6 +15,10 @@ wn.bgcolor("black")
 wn.setup(width=800, height=600)
 wn.tracer(0)
 
+# Score Initialization
+score_a = 0
+score_b = 0
+
 # Create Screen Interaction Objects
 
 # Paddle A
@@ -42,6 +46,17 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
+
+# Scoreboard
+pen = turtle.Turtle()
+pen.speed(0)
+pen.shape("square")
+pen.color("grey")
+pen.penup()
+pen.ht()
+pen.goto(0, 260)
+pen.write("Score A: 0  | Score B: 0", align="center",
+          font=("Menlo", 24, "normal"))
 
 # Ball Velocity Multiplier
 ball.dx = 2
@@ -74,6 +89,14 @@ def paddle_b_down():
     y -= 20
     paddle_b.sety(y)
 
+# Score update on screen function
+
+
+def pen_score():
+    pen.clear()
+    pen.write("Score A: {} | Score B: {}".format(score_a, score_b), align="center",
+              font=("Menlo", 24, "normal"))
+
 
 # Control Keybindings
 wn.listen()
@@ -104,9 +127,14 @@ while True:
     if ball.xcor() > 350:
         ball.goto(0, 0)
         ball.dx *= -1
+        score_a += 1
+        pen_score()
+
     elif ball.xcor() < -350:
         ball.goto(0, 0)
         ball.dx *= -1
+        score_b += 1
+        pen_score()
 
     # Paddle and Ball Collisions, Logic
     if ball.xcor() < -340 and ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50:
