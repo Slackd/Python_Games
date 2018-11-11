@@ -8,6 +8,7 @@
 # Imports
 import turtle
 import os
+import time
 
 # Setup the screen
 wn = turtle.Screen()
@@ -15,6 +16,9 @@ wn.title(" Pong @ Coded by Sam")
 wn.bgcolor("black")
 wn.setup(width=800, height=600)
 wn.tracer(0)
+
+# Added Global Game Delay
+delay = 0.1
 
 # Score Initialization
 score_a = 0
@@ -121,10 +125,14 @@ while True:
         ball.sety(290)
         ball.dy *= -1
         os.system("afplay bounce.wav&")
+        # Shorten the delay, Modify to increase difficulty * difficulty setting *
+        delay -= 0.01
     elif ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
         os.system("afplay bounce.wav&")
+        # Shorten the delay, Modify to increase difficulty * difficulty setting *
+        delay -= 0.01
     # Left & Right Logic
     if ball.xcor() > 350:
         ball.goto(0, 0)
