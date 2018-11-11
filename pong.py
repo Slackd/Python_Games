@@ -7,6 +7,7 @@
 
 # Imports
 import turtle
+import os
 
 # Setup the screen
 wn = turtle.Screen()
@@ -119,10 +120,11 @@ while True:
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
+        os.system("afplay bounce.wav&")
     elif ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
-
+        os.system("afplay bounce.wav&")
     # Left & Right Logic
     if ball.xcor() > 350:
         ball.goto(0, 0)
@@ -139,6 +141,8 @@ while True:
     # Paddle and Ball Collisions, Logic
     if ball.xcor() < -340 and ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50:
         ball.dx *= -1
+        os.system("afplay bounce.wav&")
 
     if ball.xcor() > 340 and ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() - 50:
         ball.dx *= -1
+        os.system("afplay bounce.wav&")
