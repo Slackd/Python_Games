@@ -20,7 +20,7 @@ wn.setup(width=600, height=600)
 wn.tracer(0)
 
 # Added Global Game Delay
-delay = 0.1
+delay = 0.01
 
 # Scores Setup on Game Init
 score = 0
@@ -152,7 +152,7 @@ while True:
         segments.append(new_segment)
 
         # Shorten the delay, Modify to increase difficulty * difficulty setting *
-        delay -= 0.01
+        delay -= 0.001
 
         # Increase the score
         score += 10

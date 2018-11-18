@@ -20,7 +20,7 @@ wn.setup(width=800, height=600)
 wn.tracer(0)
 
 # Added Global Game Delay
-delay = 0.1
+delay = 0.01
 
 # Score Initialization
 score_a = 0
