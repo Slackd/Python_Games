@@ -31,5 +31,3 @@ done()
 
 1. Snake Game
 2. Pong Game
-
-
